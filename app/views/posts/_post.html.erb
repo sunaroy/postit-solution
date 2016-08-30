@@ -1,0 +1,32 @@
+<div class="row">
+  <div class='span0 well text-center'>
+    <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
+      <i class= 'icon-arrow-up'></i>
+    <% end %>
+    </br>
+    <%= post.total_votes %> votes
+    <br/>
+
+    <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
+        <i class= 'icon-arrow-down'></i>
+    <% end %>
+  </div>
+  <div class='span8 well'>
+    <%= render post.categories%>
+    <h4><%= link_to post.title, fix_url(post.url) %></h4>
+    <h4><%=post.description%></h4>
+    <p>
+      <span class='quiet'>posted by</span> <%= post.user.username if post.user.present? %>
+
+    </p>
+    <small>
+          <span>
+            <% if post.comments.present?%>
+            <%= link_to("#{post.comments.size} comments",post_path(post))  %>
+            <% else %>
+            <%= link_to("0 comments",post_path(post))%>
+            <% end %>
+          </span>
+    </small>
+  </div>
+</div>
